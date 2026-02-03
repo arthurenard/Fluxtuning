@@ -1,0 +1,34 @@
+[
+    {
+        "prompt": "A photo of [subject].",
+        "output_filename": "basic.png"
+    },
+    {
+        "prompt": "A portrait of [subject] wearing a suit.",
+        "output_filename": "portrait_suit.png"
+    },
+    {
+        "prompt": "[subject] as a scientist in a laboratory, examining test tubes.",
+        "output_filename": "scientist.png"
+    },
+    {
+        "prompt": "[subject] as an astronaut on the moon, Earth visible in the background.",
+        "output_filename": "astronaut.png"
+    },
+    {
+        "prompt": "A hyper realistic close-up portrait of [subject].",
+        "output_filename": "closeup.png"
+    },
+    {
+        "prompt": "[subject] dressed as a chef in a professional kitchen.",
+        "output_filename": "chef.png"
+    },
+    {
+        "prompt": "[subject] as a medieval knight in full armor.",
+        "output_filename": "knight.png"
+    },
+    {
+        "prompt": "[subject] at graduation, wearing a cap and gown, holding a diploma.",
+        "output_filename": "graduation.png"
+    }
+]

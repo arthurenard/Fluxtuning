@@ -1,0 +1,36 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Training artifacts
+original_images/
+preprocessed_data/
+training_progress/
+checkpoints/
+data_ready/
+wandb/
+*lora_epoch*/
+*lightning_logs*
+generated_images/
+generated_images_server/
+
+# Generated images
+*.png
+*.jpeg
+*.jpg
+*.gif
+*.JPG
+
+# Environment files
+.env
+.env.local
+
+# macOS
+.DS_Store

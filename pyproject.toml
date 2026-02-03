@@ -1,0 +1,21 @@
+[project]
+name = "flux-lora-finetuning"
+version = "0.1.0"
+description = "Fine-tune FLUX with LoRA for personalized image generation"
+readme = "README.md"
+requires-python = ">=3.12"
+keywords = ["flux", "lora", "fine-tuning", "diffusion", "image-generation", "personalization"]
+dependencies = [
+    "diffusers>=0.35.2",
+    "mflux>=0.12.1",
+    "openai>=2.14.0",
+    "peft>=0.18.0",
+    "protobuf>=6.33.1",
+    "python-dotenv>=1.2.1",
+    "pytorch-lightning>=2.5.6",
+    "sentencepiece>=0.2.1",
+    "torch>=2.9.1",
+    "torchvision>=0.24.1",
+    "transformers>=4.57.1",
+    "wandb>=0.23.1",
+]
