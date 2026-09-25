@@ -2,6 +2,10 @@
 
 Fine-tune [Black Forest Labs FLUX](https://blackforestlabs.ai/) with LoRA for personalized image generation. Train the model to associate a specific trigger word with a person's appearance using just 30-50 photos.
 
+![Four images generated after fine-tuning: the subject as a boxer, a wizard, a 1920s gangster and a superhero](assets/examples.webp)
+
+The full story, with results and the math behind flow matching and LoRA, is in the write-up: [Teaching FLUX What I Look Like](https://www.arthurenard.me/blog/fluxtuning).
+
 ## Features
 
 - **LoRA fine-tuning** with PyTorch Lightning (multi-GPU ready)
@@ -16,8 +20,8 @@ Fine-tune [Black Forest Labs FLUX](https://blackforestlabs.ai/) with LoRA for pe
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/flux-lora-finetuning.git
-cd flux-lora-finetuning
+git clone https://github.com/arthurenard/Fluxtuning.git
+cd Fluxtuning
 
 # Install dependencies (using uv)
 uv sync
