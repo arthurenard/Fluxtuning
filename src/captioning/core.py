@@ -9,23 +9,19 @@ from pathlib import Path
 from .caption_prompt import caption_prompt
 
 
+def _make_client() -> OpenAI:
+    """Create the xAI client, reading XAI_API_KEY from the environment, .env.local or .env."""
+    env_path = Path(".env.local")
+    if env_path.exists():
+        load_dotenv(env_path)
+    else:
+        load_dotenv()
 
-env_path = Path(".env.local")
-if env_path.exists():
-    load_dotenv(env_path)
-else:
-    load_dotenv()
+    api_key = os.getenv("XAI_API_KEY")
+    if not api_key:
+        raise SystemExit("Error: XAI_API_KEY is not set. Export it, or add it to .env.local or .env.")
 
-XAI_API_KEY = os.getenv("XAI_API_KEY")
-
-if not XAI_API_KEY:
-    print("Error: XAI_API_KEY not found in .env.local")
-    exit(1)
-
-client = OpenAI(
-    api_key=XAI_API_KEY,
-    base_url="https://api.x.ai/v1",
-)
+    return OpenAI(api_key=api_key, base_url="https://api.x.ai/v1")
 
 def _mime_type_for_path(path: Path) -> str:
     ext = path.suffix.lower()
@@ -83,8 +79,10 @@ def caption_images(
         image_paths = image_paths[: max(0, limit)]
 
     print(f"Found {len(image_paths)} images. Starting generation with model {model}...")
-    
+
+    client = _make_client()
     data = []
+    failed = []
     prompt = caption_prompt(subject_name=subject_name)
     reference_b64 = encode_image(reference_path)
     reference_mime = _mime_type_for_path(reference_path)
@@ -134,15 +132,17 @@ def caption_images(
             print(f"  Description: {description}")
             
         except Exception as e:
+            # Skip the image: a placeholder caption would end up in the training data
             print(f"  Error processing {image_path.name}: {e}")
-            # Add a placeholder if it fails, or you might want to skip it
-            data.append({
-                "id": image_path.name,
-                "description": "Error generating description."
-            })
-            
+            failed.append(image_path.name)
+
     # Save to JSON
     with open(output_file, "w") as f:
         json.dump(data, f, indent=4)
     
     print(f"\nSuccessfully generated {output_file} with {len(data)} entries.")
+    if failed:
+        print(
+            f"Skipped {len(failed)} image(s) that could not be captioned: {', '.join(failed)}. "
+            "Caption them again with --only <filename> and a different --output file."
+        )

@@ -34,7 +34,7 @@ def _parse_args() -> argparse.Namespace:
         "--num_inference_steps",
         type=int,
         default=50,
-        help="28 is a good quality/speed default for FLUX; increase to 40-50 for max quality.",
+        help="Denoising steps. The default of 50 favours quality; 28 is a good quality/speed trade-off.",
     )
     p.add_argument("--lora_path", type=str, required=True, help="Path to LoRA adapter directory")
     p.add_argument("--output_filename", type=str, default="output.png")
